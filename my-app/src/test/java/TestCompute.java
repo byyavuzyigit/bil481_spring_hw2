@@ -14,4 +14,21 @@ public class TestCompute {
     c = new Compute(mq);
     assertTrue(true);
   }
+
+  @Test
+  public void testMQSizeIsZero(){
+    MessageQueue mq = mock(MessageQueue.class);
+    when(mq.size()).thenReturn(0);
+    c = new Compute(mq);
+    assertEquals(c.countNumberOfOccurrences(""),-1);
+  }
+
+  @Test
+  public void testMQNotContainsStr(){
+    MessageQueue mq = mock(MessageQueue.class);
+    when(mq.size()).thenReturn(1);
+    when(mq.contains("")).thenReturn(false);
+    c = new Compute(mq);
+    assertEquals(c.countNumberOfOccurrences(""),0);
+  }
 }
